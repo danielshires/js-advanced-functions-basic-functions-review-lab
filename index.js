@@ -13,7 +13,6 @@ function wrapAdjective(highlight = "*") {
     }
 }
 
-
 const Calculator = {
     add: function(a, b) {
         return a + b
@@ -33,7 +32,15 @@ let message = "13, multiplied by 2, added to 1000 and then modulo 7 is 4. Apply 
 
 
 function actionApplyer(num, array) {
-    return num
+    let returnVal = num;
+    for (let i = 0; i < array.length; i++) {
+        if (i == 0) {
+            returnVal = array[i](num);
+        } else {
+            returnVal = array[i](returnVal)
+        }
+    }
+    return returnVal;
 }
 
 actionApplyer(13, [
@@ -41,6 +48,7 @@ actionApplyer(13, [
     function(a) { return a + 1000 },
     function(a) { return a % 7 }
 ])
+
 saturdayFun("bathe my dog")
 mondayWork("work from home")
 wrapAdjective("||")
